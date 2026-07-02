@@ -1,0 +1,20 @@
+.DS_Store
+.claude/
+*.local
+
+# Dependencies
+frontend/node_modules/
+
+# Build
+frontend/dist/
+
+# Coverage
+frontend/coverage/
+
+# Env
+.env
+.env.*
+
+# Editor
+.vscode/
+.idea/

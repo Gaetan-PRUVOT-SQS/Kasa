@@ -1,0 +1,28 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.kasa-rating {
+  display: flex;
+  gap: 10px;
+}
+
+.kasa-rating-star {
+  width: 36px;
+  height: 36px;
+  fill: #e3e3e3;
+
+  &.kasa-rating-filled {
+    fill: $brand;
+  }
+}
+
+@include mobile {
+  .kasa-rating {
+    gap: 6px;
+  }
+
+  .kasa-rating-star {
+    width: 18px;
+    height: 18px;
+  }
+}

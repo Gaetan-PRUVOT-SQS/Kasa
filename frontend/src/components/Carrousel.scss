@@ -1,0 +1,84 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.kasa-carrousel {
+  position: relative;
+  width: 100%;
+  height: 415px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.kasa-carrousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kasa-carrousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 80px;
+  border: none;
+  background: transparent;
+  color: $white;
+  cursor: pointer;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  }
+}
+
+.kasa-carrousel-left {
+  left: 24px;
+}
+
+.kasa-carrousel-right {
+  right: 24px;
+}
+
+.kasa-carrousel-counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $white;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@include mobile {
+  .kasa-carrousel {
+    height: 255px;
+    border-radius: 10px;
+  }
+
+  .kasa-carrousel-arrow {
+    width: 30px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .kasa-carrousel-left {
+    left: 12px;
+  }
+
+  .kasa-carrousel-right {
+    right: 12px;
+  }
+
+  .kasa-carrousel-counter {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.kasa-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  padding: 0 22px;
+  border-radius: 10px;
+  background-color: $brand;
+  color: $white;
+  font-size: 14px;
+  font-weight: 500;
+  list-style: none;
+}
+
+@include mobile {
+  .kasa-tag {
+    height: 18px;
+    font-size: 10px;
+    padding: 0 16px;
+  }
+}

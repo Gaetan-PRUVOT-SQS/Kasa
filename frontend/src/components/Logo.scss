@@ -1,0 +1,12 @@
+@use '../styles/mixins' as *;
+
+.kasa-logo {
+  height: 68px;
+  width: auto;
+}
+
+@include mobile {
+  .kasa-logo {
+    height: 47px;
+  }
+}
