@@ -2,7 +2,7 @@
 
 Application web de location de logements entre particuliers, développée en React.
 
-Projet réalisé dans le cadre de la formation **Testeur Logiciel (OpenClassrooms) — [Coding guidelines Kasa](https://course.oc-static.com/projects/Front-End+V2/P9+React+1/Coding+guidelines+Kasa+FR.pdf).
+Projet réalisé dans le cadre de la formation Testeur Logiciel (OpenClassrooms) — [Coding guidelines Kasa](https://course.oc-static.com/projects/Front-End+V2/P9+React+1/Coding+guidelines+Kasa+FR.pdf).
 
 ## Contexte
 
