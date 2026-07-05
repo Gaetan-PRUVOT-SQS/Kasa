@@ -1,6 +1,6 @@
-# Kasa — Front-end
+# Kasa
 
-Application de location de logements entre particuliers, développée avec React et React Router.
+Application web de location de logements entre particuliers, développée en React.
 
 Projet réalisé dans le cadre de la formation **Développeur d'application JavaScript React** (OpenClassrooms) — [Coding guidelines Kasa](https://course.oc-static.com/projects/Front-End+V2/P9+React+1/Coding+guidelines+Kasa+FR.pdf).
 
@@ -20,17 +20,20 @@ Kasa est une plateforme fictive de location d'appartements. L'objectif est d'imp
 | Erreur | `*` | Page 404 avec lien retour accueil |
 
 ### Carrousel
+
 - Défilement en boucle (première ↔ dernière image)
 - Flèches et compteur masqués s'il n'y a qu'une seule photo
 - Hauteur fixe, images recadrées (`object-fit: cover`)
 - Compteur visible sur desktop, masqué sur mobile
 
 ### Collapse
+
 - Fermé par défaut à l'initialisation
 - Ouverture / fermeture au clic avec animation CSS
 - Chevron animé à la rotation
 
 ### Cards (accueil)
+
 - Lien vers la fiche logement
 - Overlay sombre au survol
 
@@ -48,8 +51,8 @@ Kasa est une plateforme fictive de location d'appartements. L'objectif est d'imp
 
 ## Données
 
-Les 20 logements sont chargés depuis `src/logements.json`.
-Toutes les images (logements et hôtes) sont hébergées localement dans `public/logements/`.
+Les 20 logements sont chargés depuis `frontend/src/logements.json`.
+Toutes les images (logements et hôtes) sont hébergées localement dans `frontend/public/logements/`.
 L'application est autonome : aucun back-end ni connexion internet n'est nécessaire.
 
 ## Prérequis
@@ -78,40 +81,42 @@ npm install
 ## Structure du projet
 
 ```
-public/
-  logements/          photos des logements et des hôtes
-  banner-*.jpg        bannières Accueil et À propos
-  logo*.svg           logos du site
-src/
-  styles/
-    _variables.scss   couleurs, breakpoints
-    _mixins.scss      mixin responsive @include mobile
-  components/
-    Banner.jsx/.scss
-    Card.jsx/.scss
-    Carrousel.jsx/.scss
-    Collapse.jsx/.scss   (+ Collapse.test.jsx)
-    Footer.jsx/.scss
-    Header.jsx/.scss
-    Host.jsx/.scss
-    Layout.jsx/.scss
-    Logo.jsx/.scss
-    Rating.jsx/.scss
-    Tag.jsx/.scss
-  pages/
-    Home.jsx/.scss
-    FicheLogement.jsx/.scss
-    About.jsx/.scss
-    Error.jsx/.scss
-  logements.json      données des 20 annonces
-  App.jsx             routes centralisées
-  index.scss          styles globaux
-  main.jsx            point d'entrée
+Kasa/
+└── frontend/
+    ├── public/
+    │   ├── logements/          photos des logements et des hôtes
+    │   ├── banner-*.jpg        bannières Accueil et À propos
+    │   └── logo*.svg           logos du site
+    └── src/
+        ├── styles/
+        │   ├── _variables.scss   couleurs, breakpoints
+        │   └── _mixins.scss    mixin responsive @include mobile
+        ├── components/
+        │   ├── Banner.jsx/.scss
+        │   ├── Card.jsx/.scss
+        │   ├── Carrousel.jsx/.scss
+        │   ├── Collapse.jsx/.scss   (+ Collapse.test.jsx)
+        │   ├── Footer.jsx/.scss
+        │   ├── Header.jsx/.scss
+        │   ├── Host.jsx/.scss
+        │   ├── Layout.jsx/.scss
+        │   ├── Logo.jsx/.scss
+        │   ├── Rating.jsx/.scss
+        │   └── Tag.jsx/.scss
+        ├── pages/
+        │   ├── Home.jsx/.scss
+        │   ├── FicheLogement.jsx/.scss
+        │   ├── About.jsx/.scss
+        │   └── Error.jsx/.scss
+        ├── logements.json      données des 20 annonces
+        ├── App.jsx             routes centralisées
+        ├── index.scss          styles globaux
+        └── main.jsx            point d'entrée
 ```
 
 ## Routes
 
-Toute la logique de routage est centralisée dans `App.jsx` :
+Toute la logique de routage est centralisée dans `frontend/src/App.jsx` :
 
 ```
 /                  → Accueil
@@ -130,6 +135,7 @@ Toute la logique de routage est centralisée dans `App.jsx` :
 Les composants `Banner` et `Collapse` sont couverts par des tests unitaires :
 
 ```bash
+cd frontend
 npm test
 ```
 

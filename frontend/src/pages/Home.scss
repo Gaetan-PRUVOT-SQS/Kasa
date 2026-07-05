@@ -5,9 +5,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
-  margin: 20px;
   padding: 40px;
-  background-color: #f7f7f7;
+  background-color: $grey-light;
   border-radius: 25px;
 }
 
