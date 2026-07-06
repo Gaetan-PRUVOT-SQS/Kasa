@@ -1,0 +1,49 @@
+.kasa-card {
+  position: relative;
+  display: block;
+  height: 340px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.kasa-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.kasa-card:hover::after {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.kasa-card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kasa-card-title {
+  position: absolute;
+  z-index: 1;
+  left: 20px;
+  bottom: 20px;
+  right: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .kasa-card {
+    height: 255px;
+  }
+}

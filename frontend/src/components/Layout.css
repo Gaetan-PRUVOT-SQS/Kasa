@@ -1,0 +1,23 @@
+.kasa-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.kasa-container {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.kasa-main {
+  padding-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .kasa-container {
+    padding: 0 20px;
+  }
+}

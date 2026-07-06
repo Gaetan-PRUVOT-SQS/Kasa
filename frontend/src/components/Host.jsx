@@ -1,4 +1,4 @@
-import './Host.scss'
+import './Host.css'
 
 function Host({ name, picture }) {
   return (

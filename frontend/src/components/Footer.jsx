@@ -1,5 +1,5 @@
 import Logo from './Logo'
-import './Footer.scss'
+import './Footer.css'
 
 function Footer() {
   return (

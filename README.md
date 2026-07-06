@@ -1,12 +1,12 @@
 # Kasa
 
-Application web de location de logements entre particuliers, développée en React.
+Application web de location de logements entre particuliers, développée en React avec un back-end Express.
 
 Projet réalisé dans le cadre de la formation Testeur Logiciel (OpenClassrooms) [Coding guidelines Kasa](https://course.oc-static.com/projects/Front-End+V2/P9+React+1/Coding+guidelines+Kasa+FR.pdf).
 
 ## Contexte
 
-Kasa est une plateforme fictive de location d'appartements. L'objectif est d'implémenter le front-end en respectant les maquettes Figma et les contraintes techniques du brief.
+Kasa est une plateforme fictive de location d'appartements. L'objectif est d'implémenter le front-end en respectant les maquettes Figma et les contraintes techniques du brief, en consommant les données via l'API back-end fournie par OpenClassrooms.
 
 **Maquettes :** [UI Design Kasa (Figma)](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=4%3A1)
 
@@ -43,31 +43,72 @@ Kasa est une plateforme fictive de location d'appartements. L'objectif est d'imp
 |-------------|------|
 | React 19 | Composants fonctionnels, props, state, events |
 | React Router 6 | Navigation et paramètres d'URL |
-| Sass | Styles (variables, mixins, nesting) |
+| CSS | Styles (custom properties, media queries) |
 | Vite | Build et serveur de développement |
 | Vitest + Testing Library | Tests unitaires |
+| Express 4 | API REST des logements |
 
-> **Note :** le brief OC mentionne Create React App, remplacé ici par Vite (CRA étant obsolète). Aucune librairie React externe n'est utilisée en dehors de React Router.
+> **Note :** le brief OC mentionne Create React App et Sass, remplacés ici par Vite (CRA étant obsolète) et du CSS natif. Aucune librairie React externe n'est utilisée en dehors de React Router.
 
 ## Données
 
-Les 20 logements sont chargés depuis `frontend/src/logements.json`.
-Toutes les images (logements et hôtes) sont hébergées localement dans `frontend/public/logements/`.
-L'application est autonome : aucun back-end ni connexion internet n'est nécessaire.
+Les 20 logements sont servis par le back-end Express depuis `backend/data.json`. Le front-end les récupère via `fetch` :
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/properties` | Liste des 20 logements |
+| `GET /api/properties/:id` | Détail d'un logement |
+
+Les images (logements et hôtes) sont hébergées sur les serveurs OpenClassrooms (URLs S3). Seules les bannières et les logos restent en local dans `frontend/public/`.
 
 ## Prérequis
 
 - Node.js 18+
 - npm
+- Connexion internet (images des logements)
 
 ## Installation
 
 ```bash
-cd frontend
+# Back-end
+cd backend
+npm install
+
+# Front-end
+cd ../frontend
 npm install
 ```
 
+## Lancement
+
+Le front-end a besoin du back-end pour afficher les logements. Lancez les deux serveurs dans des terminaux séparés :
+
+```bash
+# Terminal 1 — API (port 8080)
+cd backend
+npm start
+
+# Terminal 2 — application React (port 5173)
+cd frontend
+npm run dev
+```
+
+En développement, Vite redirige automatiquement les requêtes `/api` vers `http://localhost:8080`.
+
+### Variable d'environnement (optionnel)
+
+Pour pointer vers une autre URL d'API (build de production, déploiement) :
+
+```bash
+# frontend/.env
+VITE_API_URL=http://localhost:8080
+```
+
+Par défaut, en production (`npm run build`), l'API est attendue sur `http://localhost:8080` si `VITE_API_URL` n'est pas définie.
+
 ## Scripts
+
+### Front-end (`frontend/`)
 
 | Commande | Description |
 |----------|-------------|
@@ -78,39 +119,49 @@ npm install
 | `npm run test:watch` | Tests en mode watch |
 | `npm run coverage` | Tests + rapport de couverture |
 
+### Back-end (`backend/`)
+
+| Commande | Description |
+|----------|-------------|
+| `npm start` | Démarre l'API → http://localhost:8080 |
+
+Le back-end peut aussi être conteneurisé via le `Dockerfile` fourni.
+
 ## Structure du projet
 
 ```
 Kasa/
+├── backend/
+│   ├── app.js              routes et CORS
+│   ├── server.js           point d'entrée (port 8080)
+│   ├── data.json           données des 20 annonces
+│   └── Dockerfile
 └── frontend/
     ├── public/
-    │   ├── logements/          photos des logements et des hôtes
-    │   ├── banner-*.jpg        bannières Accueil et À propos
-    │   └── logo*.svg           logos du site
+    │   ├── banner-*.jpg    bannières Accueil et À propos
+    │   └── logo*.svg       logos du site
     └── src/
-        ├── styles/
-        │   ├── _variables.scss   couleurs, breakpoints
-        │   └── _mixins.scss    mixin responsive @include mobile
         ├── components/
-        │   ├── Banner.jsx/.scss
-        │   ├── Card.jsx/.scss
-        │   ├── Carrousel.jsx/.scss
-        │   ├── Collapse.jsx/.scss   (+ Collapse.test.jsx)
-        │   ├── Footer.jsx/.scss
-        │   ├── Header.jsx/.scss
-        │   ├── Host.jsx/.scss
-        │   ├── Layout.jsx/.scss
-        │   ├── Logo.jsx/.scss
-        │   ├── Rating.jsx/.scss
-        │   └── Tag.jsx/.scss
+        │   ├── Banner.jsx/.css
+        │   ├── Card.jsx/.css
+        │   ├── Carrousel.jsx/.css
+        │   ├── Collapse.jsx/.css   (+ Collapse.test.jsx)
+        │   ├── Footer.jsx/.css
+        │   ├── Header.jsx/.css
+        │   ├── Host.jsx/.css
+        │   ├── Layout.jsx/.css
+        │   ├── Logo.jsx/.css
+        │   ├── Rating.jsx/.css
+        │   └── Tag.jsx/.css
         ├── pages/
-        │   ├── Home.jsx/.scss
-        │   ├── FicheLogement.jsx/.scss
-        │   ├── About.jsx/.scss
-        │   └── Error.jsx/.scss
-        ├── logements.json      données des 20 annonces
+        │   ├── Home.jsx/.css
+        │   ├── FicheLogement.jsx/.css
+        │   ├── About.jsx/.css
+        │   └── Error.jsx/.css
+        ├── services/
+        │   └── api.js        appels fetch vers le back-end
         ├── App.jsx             routes centralisées
-        ├── index.scss          styles globaux
+        ├── index.css           styles globaux et variables CSS
         └── main.jsx            point d'entrée
 ```
 
@@ -129,6 +180,7 @@ Toute la logique de routage est centralisée dans `frontend/src/App.jsx` :
 
 - URL inconnue → page 404 (route `*`)
 - Identifiant de logement invalide (`/logement/xxx`) → redirection vers `/404`
+- API indisponible ou erreur réseau → message d'erreur affiché à l'utilisateur
 
 ## Tests
 
@@ -144,6 +196,7 @@ npm test
 - Composants modulaires (un composant par fichier)
 - Props, state, gestion d'événements, listes avec `.map()`
 - Routes gérées par React Router avec paramètre `:id`
-- Styles en Sass
+- Données chargées depuis l'API back-end (`/api/properties`)
+- Styles en CSS (variables globales dans `index.css`, breakpoint mobile à 768px)
 - Pas de librairie React externe
 - Aucune erreur à la compilation ni aux tests
