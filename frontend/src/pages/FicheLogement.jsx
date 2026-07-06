@@ -1,16 +1,31 @@
+import { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
 import Tag from '../components/Tag'
 import Rating from '../components/Rating'
 import Host from '../components/Host'
 import Collapse from '../components/Collapse'
-import logements from '../logements.json'
-import './FicheLogement.scss'
+import { getProperty } from '../services/api'
+import './FicheLogement.css'
 
 function FicheLogement() {
   const { id } = useParams()
-  const property = logements.find((logement) => logement.id === id)
+  const [property, setProperty] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+
+    getProperty(id)
+      .then(setProperty)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [id])
+
+  if (loading) return <p className="kasa-loading">Chargement…</p>
+  if (error) return <p className="kasa-error">{error}</p>
   if (!property) return <Navigate to="/404" replace />
 
   return (

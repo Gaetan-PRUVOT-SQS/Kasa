@@ -1,0 +1,10 @@
+.kasa-logo {
+  height: 68px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .kasa-logo {
+    height: 47px;
+  }
+}

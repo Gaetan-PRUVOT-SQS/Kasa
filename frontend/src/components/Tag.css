@@ -1,0 +1,21 @@
+.kasa-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  padding: 0 22px;
+  border-radius: 10px;
+  background-color: var(--brand);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .kasa-tag {
+    height: 18px;
+    font-size: 10px;
+    padding: 0 16px;
+  }
+}

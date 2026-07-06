@@ -1,4 +1,4 @@
-import './Rating.scss'
+import './Rating.css'
 
 const STARS = [1, 2, 3, 4, 5]
 

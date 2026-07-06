@@ -1,4 +1,4 @@
-import './Logo.scss'
+import './Logo.css'
 
 function Logo({ variant = 'red' }) {
   const src = variant === 'white' ? '/logo-white.svg' : '/logo.svg'

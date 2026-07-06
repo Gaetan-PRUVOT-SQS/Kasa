@@ -1,4 +1,4 @@
-import './Tag.scss'
+import './Tag.css'
 
 function Tag({ label }) {
   return <li className="kasa-tag">{label}</li>

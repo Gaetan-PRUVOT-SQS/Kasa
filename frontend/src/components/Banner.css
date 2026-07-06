@@ -1,0 +1,44 @@
+.kasa-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 223px;
+  margin: 0 0 40px;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: var(--brand);
+  background-size: cover;
+  background-position: center;
+}
+
+.kasa-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.kasa-banner-title {
+  position: relative;
+  z-index: 1;
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 20px;
+  color: var(--white);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .kasa-banner {
+    min-height: 111px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+  }
+
+  .kasa-banner-title {
+    font-size: 24px;
+    text-align: left;
+    max-width: 230px;
+  }
+}
