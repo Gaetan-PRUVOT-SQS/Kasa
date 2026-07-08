@@ -158,16 +158,18 @@ Kasa/
         │   ├── FicheLogement.jsx/.css
         │   ├── About.jsx/.css
         │   └── Error.jsx/.css
-        ├── services/
-        │   └── api.js        appels fetch vers le back-end
-        ├── App.jsx             routes centralisées
+        ├── api/
+        │   └── api.js          appels fetch vers le back-end
+        ├── routes/
+        │   └── Routes.jsx      configuration des routes
+        ├── App.jsx             composant racine
         ├── index.css           styles globaux et variables CSS
         └── main.jsx            point d'entrée
 ```
 
 ## Routes
 
-Toute la logique de routage est centralisée dans `frontend/src/App.jsx` :
+Toute la logique de routage est centralisée dans `frontend/src/routes/Routes.jsx` :
 
 ```
 /                  → Accueil
