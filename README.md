@@ -10,6 +10,32 @@ Kasa est une plateforme fictive de location d'appartements. L'objectif est d'imp
 
 **Maquettes :** [UI Design Kasa (Figma)](https://www.figma.com/file/bAnXDNqRKCRRP8mY2gcb5p/UI-Design-Kasa-FR?node-id=4%3A1)
 
+## Aperçu
+
+### Accueil
+
+Grille des 20 logements avec bannière et navigation.
+
+![Page d'accueil — grille des logements](docs/screenshots/accueil.png)
+
+### Carrousel
+
+Défilement des photos sur la fiche logement (flèches, compteur, boucle).
+
+![Carrousel en action](docs/screenshots/carrousel.gif)
+
+### Collapse
+
+Ouverture et fermeture animée des sections (page À propos).
+
+![Composant Collapse](docs/screenshots/collapse.gif)
+
+### Page 404
+
+Route inconnue ou identifiant de logement invalide.
+
+![Page 404](docs/screenshots/404.png)
+
 ## Fonctionnalités
 
 | Page | Route | Description |
