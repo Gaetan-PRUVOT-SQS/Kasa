@@ -1,7 +1,7 @@
 import './Tag.css'
 
-function Tag({ label }) {
-  return <li className="kasa-tag">{label}</li>
+function Tag(props) {
+  return <li className="kasa-tag">{props.label}</li>
 }
 
 export default Tag

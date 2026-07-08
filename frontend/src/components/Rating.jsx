@@ -2,8 +2,8 @@ import './Rating.css'
 
 const STARS = [1, 2, 3, 4, 5]
 
-function Rating({ rating }) {
-  const score = Number(rating)
+function Rating(props) {
+  const score = Number(props.rating)
 
   return (
     <div

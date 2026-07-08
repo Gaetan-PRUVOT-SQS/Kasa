@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './Carrousel.css'
 
-function Carrousel({ pictures, title }) {
+function Carrousel(props) {
   const [index, setIndex] = useState(0)
-  const total = pictures.length
+  const total = props.pictures.length
 
   if (total === 0) return null
 
@@ -19,8 +19,8 @@ function Carrousel({ pictures, title }) {
     <div className="kasa-carrousel">
       <img
         className="kasa-carrousel-image"
-        src={pictures[index]}
-        alt={`${title} — photo ${index + 1} sur ${total}`}
+        src={props.pictures[index]}
+        alt={`${props.title} — photo ${index + 1} sur ${total}`}
       />
 
       {total > 1 && (

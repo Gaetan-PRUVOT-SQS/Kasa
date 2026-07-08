@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Collapse.css'
 
-function Collapse({ title, children }) {
+function Collapse(props) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -12,7 +12,7 @@ function Collapse({ title, children }) {
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
       >
-        <span className="kasa-collapse-title">{title}</span>
+        <span className="kasa-collapse-title">{props.title}</span>
         <svg
           className={`kasa-collapse-chevron ${isOpen ? 'kasa-collapse-open' : ''}`}
           viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ function Collapse({ title, children }) {
       <div
         className={`kasa-collapse-content ${isOpen ? 'kasa-collapse-open' : ''}`}
       >
-        <div className="kasa-collapse-inner">{children}</div>
+        <div className="kasa-collapse-inner">{props.children}</div>
       </div>
     </div>
   )

@@ -1,13 +1,13 @@
 import './Banner.css'
 
-function Banner({ image, title }) {
+function Banner(props) {
   return (
     <section
       className="kasa-banner"
-      style={image ? { backgroundImage: `url(${image})` } : undefined}
+      style={props.image ? { backgroundImage: `url(${props.image})` } : undefined}
     >
       <span className="kasa-banner-overlay" aria-hidden="true" />
-      {title && <h1 className="kasa-banner-title">{title}</h1>}
+      {props.title && <h1 className="kasa-banner-title">{props.title}</h1>}
     </section>
   )
 }
