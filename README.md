@@ -37,6 +37,40 @@ Kasa est une plateforme fictive de location d'appartements. L'objectif est d'imp
 - Lien vers la fiche logement
 - Overlay sombre au survol
 
+## Composants et props
+
+Les composants réutilisables reçoivent leurs données via des **props** passées par les pages parentes. Chaque composant déclare un paramètre `props` et y accède avec la notation `props.nom` :
+
+```jsx
+function Card(props) {
+  return (
+    <Link to={`/logement/${props.id}`}>
+      <img src={props.cover} alt={props.title} />
+      <h2>{props.title}</h2>
+    </Link>
+  )
+}
+```
+
+Les pages chargent les données (API ou contenu statique) et transmettent les valeurs aux enfants :
+
+```jsx
+<Card id={property.id} title={property.title} cover={property.cover} />
+```
+
+| Composant | Props | Utilisé dans |
+|-----------|-------|--------------|
+| `Banner` | `image`, `title` | Accueil, À propos |
+| `Card` | `id`, `title`, `cover` | Accueil |
+| `Carrousel` | `pictures`, `title` | Fiche logement |
+| `Collapse` | `title`, `children` | Fiche logement, À propos |
+| `Host` | `name`, `picture` | Fiche logement |
+| `Rating` | `rating` | Fiche logement |
+| `Tag` | `label` | Fiche logement |
+| `Logo` | `variant` (`'red'` par défaut) | Header, Footer |
+
+Les composants `Header`, `Footer` et `Layout` n'ont pas de props : leur contenu est fixe. Les pages (`Home`, `About`, `FicheLogement`, `Error`) gèrent leur propre état avec `useState` et les appels API.
+
 ## Stack technique
 
 | Technologie | Rôle |
@@ -145,7 +179,7 @@ Kasa/
         │   ├── Banner.jsx/.css
         │   ├── Card.jsx/.css
         │   ├── Carrousel.jsx/.css
-        │   ├── Collapse.jsx/.css   (+ Collapse.test.jsx)
+        │   ├── Collapse.jsx/.css   (+ Banner.test.jsx, Collapse.test.jsx)
         │   ├── Footer.jsx/.css
         │   ├── Header.jsx/.css
         │   ├── Host.jsx/.css
@@ -196,7 +230,7 @@ npm test
 ## Conformité au brief OC
 
 - Composants modulaires (un composant par fichier)
-- Props, state, gestion d'événements, listes avec `.map()`
+- Props explicites (`props.nom`), state, gestion d'événements, listes avec `.map()`
 - Routes gérées par React Router avec paramètre `:id`
 - Données chargées depuis l'API back-end (`/api/properties`)
 - Styles en CSS (variables globales dans `index.css`, breakpoint mobile à 768px)
