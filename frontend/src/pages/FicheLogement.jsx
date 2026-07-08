@@ -5,7 +5,7 @@ import Tag from '../components/Tag'
 import Rating from '../components/Rating'
 import Host from '../components/Host'
 import Collapse from '../components/Collapse'
-import { getProperty } from '../services/api'
+import { getProperty } from '../api/api'
 import './FicheLogement.css'
 
 function FicheLogement() {

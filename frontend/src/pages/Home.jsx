@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Banner from '../components/Banner'
 import Card from '../components/Card'
-import { getProperties } from '../services/api'
+import { getProperties } from '../api/api'
 import './Home.css'
 
 function Home() {
