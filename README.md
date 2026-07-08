@@ -262,3 +262,7 @@ npm test
 - Styles en CSS (variables globales dans `index.css`, breakpoint mobile à 768px)
 - Pas de librairie React externe
 - Aucune erreur à la compilation ni aux tests
+
+## Licence
+
+MIT — voir [LICENSE](LICENSE).
