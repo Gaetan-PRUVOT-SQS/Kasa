@@ -7,9 +7,17 @@ backend/node_modules/
 
 # Build
 frontend/dist/
+backend/dist/
 
-# Coverage
+# Coverage and test output
 frontend/coverage/
+backend/coverage/
+frontend/playwright-report/
+frontend/test-results/
+frontend/blob-report/
+
+# TypeScript
+*.tsbuildinfo
 
 # Env
 .env
