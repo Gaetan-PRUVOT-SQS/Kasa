@@ -1,11 +1,23 @@
 import { useState } from 'react'
 import './Carrousel.css'
 
-function Carrousel(props) {
+interface CarrouselProps {
+  pictures: readonly string[]
+  title: string
+}
+
+function Carrousel(props: CarrouselProps) {
   const [index, setIndex] = useState(0)
   const total = props.pictures.length
 
-  if (total === 0) return null
+  if (total === 0) {
+    return null
+  }
+
+  const picture = props.pictures[index]
+  if (picture === undefined) {
+    return null
+  }
 
   function prev() {
     setIndex((current) => (current === 0 ? total - 1 : current - 1))
@@ -19,11 +31,11 @@ function Carrousel(props) {
     <div className="kasa-carrousel">
       <img
         className="kasa-carrousel-image"
-        src={props.pictures[index]}
-        alt={`${props.title} — photo ${index + 1} sur ${total}`}
+        src={picture}
+        alt={`${props.title}, photo ${String(index + 1)} sur ${String(total)}`}
       />
 
-      {total > 1 && (
+      {total > 1 ? (
         <>
           <button
             type="button"
@@ -63,7 +75,7 @@ function Carrousel(props) {
             {index + 1}/{total}
           </span>
         </>
-      )}
+      ) : null}
     </div>
   )
 }

@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import './Collapse.css'
 
-function Collapse(props) {
+interface CollapseProps {
+  title: string
+  children: ReactNode
+}
+
+function Collapse(props: CollapseProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -9,7 +14,9 @@ function Collapse(props) {
       <button
         type="button"
         className="kasa-collapse-header"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => {
+          setIsOpen((open) => !open)
+        }}
         aria-expanded={isOpen}
       >
         <span className="kasa-collapse-title">{props.title}</span>
@@ -28,9 +35,7 @@ function Collapse(props) {
           />
         </svg>
       </button>
-      <div
-        className={`kasa-collapse-content ${isOpen ? 'kasa-collapse-open' : ''}`}
-      >
+      <div className={`kasa-collapse-content ${isOpen ? 'kasa-collapse-open' : ''}`}>
         <div className="kasa-collapse-inner">{props.children}</div>
       </div>
     </div>

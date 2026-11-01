@@ -1,6 +1,11 @@
 import './Host.css'
 
-function Host(props) {
+interface HostProps {
+  name: string
+  picture: string
+}
+
+function Host(props: HostProps) {
   return (
     <div className="kasa-host">
       <span className="kasa-host-name">{props.name}</span>

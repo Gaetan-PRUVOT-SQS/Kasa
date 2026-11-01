@@ -1,16 +1,16 @@
 import './Rating.css'
 
+interface RatingProps {
+  rating: string
+}
+
 const STARS = [1, 2, 3, 4, 5]
 
-function Rating(props) {
+function Rating(props: RatingProps) {
   const score = Number(props.rating)
 
   return (
-    <div
-      className="kasa-rating"
-      role="img"
-      aria-label={`Note : ${score} sur 5`}
-    >
+    <div className="kasa-rating" role="img" aria-label={`Note : ${String(score)} sur 5`}>
       {STARS.map((value) => (
         <svg
           key={value}

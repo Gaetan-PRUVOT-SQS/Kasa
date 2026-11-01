@@ -1,32 +1,52 @@
 import { useEffect, useState } from 'react'
-import { useParams, Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
 import Tag from '../components/Tag'
 import Rating from '../components/Rating'
 import Host from '../components/Host'
 import Collapse from '../components/Collapse'
-import { getProperty } from '../api/api'
+import { getProperty, type Property } from '../api/api'
 import './FicheLogement.css'
 
 function FicheLogement() {
-  const { id } = useParams()
-  const [property, setProperty] = useState(null)
+  const params = useParams()
+  const id = params.id
+  const [property, setProperty] = useState<Property | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    if (id === undefined) {
+      return
+    }
+
     setLoading(true)
     setError(null)
 
-    getProperty(id)
-      .then(setProperty)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
+    void getProperty(id)
+      .then((item) => {
+        setProperty(item)
+      })
+      .catch((err: unknown) => {
+        setError(err instanceof Error ? err.message : 'Impossible de charger le logement')
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [id])
 
-  if (loading) return <p className="kasa-loading">Chargement…</p>
-  if (error) return <p className="kasa-error">{error}</p>
-  if (!property) return <Navigate to="/404" replace />
+  if (id === undefined) {
+    return <Navigate to="/404" replace />
+  }
+  if (loading) {
+    return <p className="kasa-loading">Chargement…</p>
+  }
+  if (error !== null) {
+    return <p className="kasa-error">{error}</p>
+  }
+  if (property === null) {
+    return <Navigate to="/404" replace />
+  }
 
   return (
     <article className="kasa-fiche">

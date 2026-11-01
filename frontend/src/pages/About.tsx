@@ -2,14 +2,19 @@ import Banner from '../components/Banner'
 import Collapse from '../components/Collapse'
 import './About.css'
 
-const VALUES = [
+interface Value {
+  title: string
+  text: string
+}
+
+const VALUES: readonly Value[] = [
   {
     title: 'Fiabilité',
-    text: "Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes.",
+    text: 'Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes.',
   },
   {
     title: 'Respect',
-    text: "La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme.",
+    text: 'La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme.',
   },
   {
     title: 'Service',

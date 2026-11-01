@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import './Card.css'
 
-function Card(props) {
+interface CardProps {
+  id: string
+  title: string
+  cover: string
+}
+
+function Card(props: CardProps) {
   return (
     <Link to={`/logement/${props.id}`} className="kasa-card">
       <img className="kasa-card-cover" src={props.cover} alt={props.title} />
