@@ -1,13 +1,14 @@
-FROM node:19
+FROM node:26.13.0-bookworm-slim
 
 WORKDIR /app
 
-COPY package.json .
-
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 
 COPY . .
+RUN npm run build && npm prune --omit=dev
 
-EXPOSE 80
+ENV PORT=8080
+EXPOSE 8080
 
-CMD npm start
+CMD ["npm", "start"]

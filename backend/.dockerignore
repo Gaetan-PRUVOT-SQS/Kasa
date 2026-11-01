@@ -2,3 +2,7 @@ node_modules
 Dockerfile
 .git
 .idea
+dist
+coverage
+.env
+.env.*
